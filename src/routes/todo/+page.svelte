@@ -71,13 +71,13 @@
 			placeholder="What needs to be done ?"
 			aria-label="Add a new todo"
 		/>
-		<button type="submit">Add New Todo</button>
+		<button type="submit">Add</button>
 	</form>
 
 	<!--Render the todo lists-->
 	<ul>
 		{#each todos as todo (todo.id)}
-			<li class:completed={todo.completed}>
+			<li>
 				{#if editTodoId === todo.id}
 					<input
 						type="text"
@@ -87,17 +87,17 @@
 						aria-label="Edit todo"
 					/>
 					<div>
-						<button class="edit" on:click={() => saveTodo(todo.id)}>Edit</button>
-						<button class="cancel" on:click={cancelEdit}>Cancel</button>
+						<button on:click={() => saveTodo(todo.id)}>Save</button>
+						<button on:click={() => cancelEdit()}>Cancel</button>
 					</div>
 				{:else}
-					<div class="view-content">
+					<div>
 						<input type="checkbox" bind:checked={todo.completed} aria-label="Mark as complete" />
 						<span>{todo.text}</span>
 					</div>
-					<div class="view-buttons">
-						<button class="edit" on:click={() => editTodo(todo)}>Edit</button>
-						<button class="delete" on:click={() => deleteTodo(todo.id)}>Delete</button>
+					<div>
+						<button on:click={() => editTodo(todo)}>Edit</button>
+						<button on:click={() => deleteTodo(todo.id)}>Delete</button>
 					</div>
 				{/if}
 			</li>
